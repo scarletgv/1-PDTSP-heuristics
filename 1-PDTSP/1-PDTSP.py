@@ -32,12 +32,9 @@ def greedy(clients, max_cap, n):
 		visited.append(client)
 		unvisited.remove(client)
 		cap += client[2]
-		curr_client = client		
+		curr_client = client
 
 	print("Greedy tour:")
-	for c in visited:
-		print(c)
-
 	print("Cost: "+str(tour_cost(visited)))
 
 def choose_client(curr, cap, max_cap, unvisited, n):
@@ -72,9 +69,6 @@ def insertion(clients, max_cap, n):
 		unvisited.remove(client)
 		
 	print("Insertion tour:")
-	for c in visited:
-		print(c)
-
 	print("Cost: "+str(tour_cost(visited)))
 
 def choose_insertion(tour, max_cap, unvisited, n):
@@ -85,7 +79,7 @@ def choose_insertion(tour, max_cap, unvisited, n):
 
 	# For each pair of clients, finds a viable unvisited client
 	# with the least cost of insertion
-	for i in range(0,len(tour)-1,1):
+	for i in range(-1,len(tour)-1,1):
 		for client in unvisited:
 			ux = distance(tour[i],client)
 			xv = distance(client,tour[i+1])
@@ -114,7 +108,7 @@ def tour_cost(tour):
 	tot_cost = sum(distance(tour[i],tour[i+1]) for i in range(-1,len(tour)-1,1))
 	return tot_cost
 
-instance = "test"
+instance = "test2"
 c, v, n = read_instance(instance)
 greedy(c, v, n)
 insertion(c, v, n)
